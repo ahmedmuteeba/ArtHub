@@ -1,0 +1,103 @@
+/* Add your own custom styling here */
+/* Add your own custom styling here */
+/* Add your own custom styling here */
+
+body {
+    font-family: Arial, sans-serif;
+    background-image:url(../img2/backg.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .container {
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Rest of the CSS styles remain the same */
+  
+  
+  .form-header {
+    padding: 20px;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .form-header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .form-body {
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background-color: transparent;
+    transition: border-bottom-color 0.3s ease-in-out;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-bottom-color: #007bff;
+  }
+  
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  p {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
