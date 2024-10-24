@@ -1,45 +1,56 @@
 <?php
 session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Retrieve form data
-  $username = $_POST['username'];
+  $username = trim($_POST['username']);
   $password = $_POST['password'];
 
-//   TODO: Perform registration logic and database query
+  include('db.php');
 
-  // Example code for connecting to MySQL and inserting user data
-  $servername = 'localhost';
-  $dbUsername = 'root';
-  $dbPassword = '';
-  $dbName = 'project';
+  try {
 
-  $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
-  if (!$conn) {
-    die();
+    // Use prepared statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE userName = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result && $result->num_rows > 0) {
+      $user = $result->fetch_assoc();
+
+      if (password_verify($password, $user['password'])) {
+        $_SESSION['username'] = $user['userName'];
+        $_SESSION['userId'] = $user['userId'];
+
+        header("Location: index.php");
+        exit;
+      } else {
+        // Password is not hashed, check if it's in plain text
+        if ($user['password'] === $password) {
+          // Hash the plain-text password and update the record
+          $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+          $stmt = $conn->prepare("UPDATE users SET password = ? WHERE userName = ?");
+          $stmt->bind_param("ss", $hashedPassword, $user['userName']);
+          $stmt->execute();
+
+          // Successful login and password updated
+          $_SESSION['userId'] = $user['id'];
+          header("Location: index.php");
+          exit;
+        } else {
+          header("Location: login.html?error=incorrect_password");
+          exit;
+        }
+      }
+    } else {
+      header("Location: login.html?error=user_not_found");
+      exit;
+    }
+  } catch (Exception $e) {
+    // Handle errors gracefully
+    echo "Error: " . $e->getMessage();
   }
 
-  // Sanitize user input to prevent SQL injection
-  $username = $conn->real_escape_string($username);
-  $password = $conn->real_escape_string($password);
-
-// Perform database query
-  $sql = "SELECT * FROM users WHERE userName='$username' AND password='$password'";
-  $result = $conn->query($sql);
-
-
-  if ($result->num_rows > 0) {
-    // User authenticated
-    $user = $result->fetch_assoc();
-    $_SESSION['username']=$username;
-    $_SESSION['password']=$password;
-    $_SESSION['userId'] = $user['userId'];
-    header("Location: index.html");
-
-  } else {
-    // Invalid credentials
-    header("Location: login.html");
-  }
-
+  $stmt->close();  // Close prepared statement
   $conn->close();
 }
-?>

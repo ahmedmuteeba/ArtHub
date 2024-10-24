@@ -10,57 +10,57 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/global.css" rel="stylesheet">
   <link href="css/artwork.css" rel="stylesheet">
-  <linK href="css/addreview.css" rel="stylesheet""
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&display=swap" rel="stylesheet">
+  <linK href="css/addreview.css" rel="stylesheet">
+  <link href=" https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&display=swap" rel="stylesheet">
   <script src="js/bootstrap.bundle.min.js"></script>
 
 </head>
 
 <body>
-<section id="header">
-		<nav class="navbar navbar-expand-md navbar-light" id="navbar_sticky">
-			<div class="container-xl">
-				<a class="navbar-brand fs-2 p-0 fw-bold" href="index.html"><i
-						class="fa fa-pencil col_pink me-1 align-middle"></i> Art<span class="col_pink span_1">Hub</span>
-					<br> <span class="font_12 span_2">Art Realm</span></a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mb-0 ms-auto">
+  <section id="header">
+    <nav class="navbar navbar-expand-md navbar-light" id="navbar_sticky">
+      <div class="container-xl">
+        <a class="navbar-brand fs-2 p-0 fw-bold" href="index.html"><i
+            class="fa fa-pencil col_pink me-1 align-middle"></i> Art<span class="col_pink span_1">Hub</span>
+          <br> <span class="font_12 span_2">Art Realm</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-0 ms-auto">
 
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="index.html">Home</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								Profile
-							</a>
-							<ul class="dropdown-menu drop_1" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="profile.php"> View</a></li>
-								<li><a class="dropdown-item border-0" href="createprofile.html"> Create</a></li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="artwork.php">Artworks </a>
-						</li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Profile
+              </a>
+              <ul class="dropdown-menu drop_1" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="profile.php"> View</a></li>
+                <li><a class="dropdown-item border-0" href="createprofile.html"> Create</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="artwork.php">Artworks </a>
+            </li>
 
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="uploadpost.html">Upload </a>
-						</li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="uploadpost.html">Upload </a>
+            </li>
 
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="logout.php">Logout</a>
-						</li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="logout.php">Logout</a>
+            </li>
 
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</section>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </section>
   <section id="center" class="center_o bg_gray pt-2 pb-2">
     <div class="container-xl">
       <div class="row center_o1">
@@ -81,16 +81,8 @@
 </body>
 <?php
 session_start();
-// Example code for fetching artwork data from the database and generating HTML code
-$servername = 'localhost';
-$dbUsername = 'root';
-$dbPassword = '';
-$dbName = 'project';
 
-$conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
-if ($conn->connect_error) {
-  die('Connection failed: ' . $conn->connect_error);
-}
+include('db.php');
 
 // Fetch artwork data from the database based on artId
 if (isset($_GET['artId'])) {
@@ -102,6 +94,7 @@ if (isset($_GET['artId'])) {
 
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+      $businessId = $row['userId'];
       $artName = $row['artName'];
       $artDetails = $row['artDetails'];
       $artDimensions = $row['artDimensions'];
@@ -169,7 +162,12 @@ if (isset($_GET['artId'])) {
     echo  '<h4 class="mt-3" style="color: #000000;">$' . $artPrice . '</h4>
                                     <p>' . $artDetails . '</p>
                                     <p> Dimensions: ' . $artDimensions . '</p>
-                                    <p>Category: <a class="col_pink hover_white" href="#">Posters</a></p>';
+                                    <p>Category: <a class="col_pink hover_white" href="#">Posters</a></p>
+                <div style="background-color: #e5c6f5; padding: 10px 20px 10px ; border-radius: 12px; text-align: center; width: max-content; margin-bottom:10px;">
+    <a href="messages.php?businessId=' . $businessId . '" style="font-size:16px; text-decoration: none; color: #333; font-weight: bold;">Contact Artist</a>
+</div>
+';
+
     $sqlLink = "SELECT socialLink1, socialLink2, socialLink3 FROM business";
     $result = $conn->query($sqlLink);
     if ($result->num_rows > 0) {
@@ -183,7 +181,7 @@ if (isset($_GET['artId'])) {
                                       <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-skype"></i></a></li>
                                       <li><a href="' . $socialLink1 . '" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                       <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                      <li><a href="' .$socialLink2 . '" class="icoGoogle" title="Google +"><i class="fa fa-instagram"></i></a></li>
+                                      <li><a href="' . $socialLink2 . '" class="icoGoogle" title="Google +"><i class="fa fa-instagram"></i></a></li>
                                       <li><a href="' . $socialLink3 . '" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                                   </ul>
                               </div>
@@ -312,69 +310,69 @@ $conn->close();
         </div>
       </div>
       <div class="col-md-3">
-		<div class="footer_1i">
-		 <hr class="line_1">
-		 <h5 class="mb-3">RECENT WORKS</h5>
-		 <div class="footer_1i1 row">
-		  <div class="col-md-4 col-4 p-0">
-		   <div class="footer_1i1i">
-			 <div class="grid clearfix">
-					 <figure class="effect-jazz mb-0">
-					   <a href="#"><img src="home images/1.jpg" class="w-100" alt="abc"></a>
-					 </figure>
-				 </div>
-		   </div>
-		  </div>
-		  <div class="col-md-4 col-4 p-0">
-		   <div class="footer_1i1i">
-			 <div class="grid clearfix">
-					 <figure class="effect-jazz mb-0">
-					   <a href="#"><img src="home images/2.jpeg" class="w-100" alt="abc"></a>
-					 </figure>
-				 </div>
-		   </div>
-		  </div>
-		  <div class="col-md-4 col-4 p-0">
-		   <div class="footer_1i1i">
-			 <div class="grid clearfix">
-					 <figure class="effect-jazz mb-0">
-					   <a href="#"><img src="home images/16.jpg" class="w-100" alt="abc"></a>
-					 </figure>
-				 </div>
-		   </div>
-		  </div>
-		 </div>
-		 <div class="footer_1i1 row">
-		  <div class="col-md-4 col-4 p-0">
-		   <div class="footer_1i1i">
-			 <div class="grid clearfix">
-					 <figure class="effect-jazz mb-0">
-					   <a href="#"><img src="home images/21.jpeg" class="w-100" alt="abc"></a>
-					 </figure>
-				 </div>
-		   </div>
-		  </div>
-		  <div class="col-md-4 col-4 p-0">
-		   <div class="footer_1i1i">
-			 <div class="grid clearfix">
-					 <figure class="effect-jazz mb-0">
-					   <a href="#"><img src="home images/22.jpeg" class="w-100" alt="abc"></a>
-					 </figure>
-				 </div>
-		   </div>
-		  </div>
-		  <div class="col-md-4 col-4 p-0">
-		   <div class="footer_1i1i">
-			 <div class="grid clearfix">
-					 <figure class="effect-jazz mb-0">
-					   <a href="#"><img src="home images/23.jpg" class="w-100" alt="abc"></a>
-					 </figure>
-				 </div>
-		   </div>
-		  </div>
-		 </div>
-		</div>
-	   </div>
+        <div class="footer_1i">
+          <hr class="line_1">
+          <h5 class="mb-3">RECENT WORKS</h5>
+          <div class="footer_1i1 row">
+            <div class="col-md-4 col-4 p-0">
+              <div class="footer_1i1i">
+                <div class="grid clearfix">
+                  <figure class="effect-jazz mb-0">
+                    <a href="#"><img src="home images/1.jpg" class="w-100" alt="abc"></a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-4 p-0">
+              <div class="footer_1i1i">
+                <div class="grid clearfix">
+                  <figure class="effect-jazz mb-0">
+                    <a href="#"><img src="home images/2.jpeg" class="w-100" alt="abc"></a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-4 p-0">
+              <div class="footer_1i1i">
+                <div class="grid clearfix">
+                  <figure class="effect-jazz mb-0">
+                    <a href="#"><img src="home images/16.jpg" class="w-100" alt="abc"></a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer_1i1 row">
+            <div class="col-md-4 col-4 p-0">
+              <div class="footer_1i1i">
+                <div class="grid clearfix">
+                  <figure class="effect-jazz mb-0">
+                    <a href="#"><img src="home images/21.jpeg" class="w-100" alt="abc"></a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-4 p-0">
+              <div class="footer_1i1i">
+                <div class="grid clearfix">
+                  <figure class="effect-jazz mb-0">
+                    <a href="#"><img src="home images/22.jpeg" class="w-100" alt="abc"></a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-4 p-0">
+              <div class="footer_1i1i">
+                <div class="grid clearfix">
+                  <figure class="effect-jazz mb-0">
+                    <a href="#"><img src="home images/23.jpg" class="w-100" alt="abc"></a>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="col-md-3">
         <div class="footer_1i">
           <hr class="line_1">

@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+include('db.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if all required form fields are provided
     if (isset($_POST['fullName'], $_POST['comment'], $_POST['rating'], $_POST['email'],$_POST['artId'])) {
@@ -9,17 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $rating = $_POST['rating'];
         $email = $_POST['email'];
         $artId = $_POST['artId'];
-
-        // Connect to the database
-        $servername = 'localhost';
-        $dbUsername = 'root';
-        $dbPassword = '';
-        $dbName = 'project';
-
-        $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
-        if ($conn->connect_error) {
-            die('Connection failed: ' . $conn->connect_error);
-        }
+        
         // Retrieve userId based on fullName and email
         $sql = "SELECT userId FROM users WHERE fullName =? AND email = ?";
         $stmt = $conn->prepare($sql);

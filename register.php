@@ -1,41 +1,40 @@
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Retrieve form data
-  $fullname = $_POST['fullname'];
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
 
-  // TODO: Perform registration logic and database query
+  include('db.php');
 
-  // Example code for connecting to MySQL and inserting user data
-  $servername = 'localhost';
-  $dbUsername = 'root';
-  $dbPassword = '';
-  $dbName = 'project';
+  // Retrieve form data and apply basic sanitization
+  $fullname = trim($_POST['fullname']);
+  $username = trim($_POST['username']);
+  $email = trim($_POST['email']);
+  $password = trim($_POST['password']);
 
-  $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
-  if ($conn->connect_error) {
-    die('Connection failed: ' . $conn->connect_error);
-  }
+  $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-  // Sanitize user input to prevent SQL injection
-  $fullname = $conn->real_escape_string($fullname);
-  $username = $conn->real_escape_string($username);
-  $email = $conn->real_escape_string($email);
-  $password = $conn->real_escape_string($password);
+  try {
+    $stmt = $conn->prepare("INSERT INTO users (fullName, userName, email, password) VALUES (?, ?, ?, ?)");
 
-  // Perform database query
-  $sql = "INSERT INTO users (fullName, userName, email, password) VALUES ('$fullname','$username', '$email', '$password')";
-  
-  if ($conn->query($sql) === true) {
+    if ($stmt === false) {
+      throw new Exception('Failed to prepare statement: ' . $conn->error);
+    }
+
+    $stmt->bind_param("ssss", $fullname, $username, $email, $hashedPassword);
+
+    // Execute the statement
+    if ($stmt->execute()) {
+
+      // On successful registration, redirect to the login page
       header("Location: login.html");
-  } else {
-    echo 'Error: ' . $sql . '<br>' . $conn->error;
+      exit;
+    } else {
+      throw new Exception('Failed to execute statement: ' . $stmt->error);
+    }
+  } catch (Exception $e) {
+    // Handle errors gracefully and show the error message
+    echo "Error: " . $e->getMessage();
   }
-  
 
+  $stmt->close();
   $conn->close();
 }
-?>

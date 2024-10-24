@@ -5,7 +5,88 @@ Author: TemplatesOnWeb
 Author URI: https://www.templateonweb.com/
 Licence: <a href="https://www.templateonweb.com/license">Website Template Licence</a>
 */
+
+
+/* Chat Sidebar */
+#chat-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  overflow-x: hidden;
+  transition: width 0.5s ease;
+  z-index: 9999;
+  padding-top: 60px; /* space for close button */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Sidebar content when open */
+.chat-sidebar-active {
+  width: 300px; /* Sidebar width when active */
+}
+
+/* Close Button in Sidebar */
+#close-chat-sidebar {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Sidebar Heading */
+#chat-sidebar h2 {
+  margin: 20px;
+  text-align: center;
+}
+
+/* Conversations List */
+#conversation-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 20px;
+}
+
+#conversation-list li {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #444;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#conversation-list li strong {
+  color: #fff;
+}
+
+/* Chat Button Hover Effect */
+.chat-button:hover {
+  background-color: #45a049;
+}
+
+/* Close Button Hover Effect */
+#close-chat-sidebar:hover {
+  color: #ccc;
+}
+
 /*********************about************/
+.about_pg1 {
+  padding: 50px 0; /* Adjust as necessary */
+}
+
+.product_2im {
+  margin: 0 auto; /* Center the product_2im div */
+}
+
+.profilepic {
+  margin: 0 auto; /* Center the profile picture */
+}
 .about_pg1il span {
 width:120px;
 height:120px;
