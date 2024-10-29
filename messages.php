@@ -36,6 +36,7 @@ include('getconversations.php');
     <section id="about_pg" class="p_4">
         <div class="wrapper">
             <div class="container">
+                <!-- list of conversations -->
                 <div class="left">
                     <ul class="people">
                         <?php
@@ -49,7 +50,7 @@ include('getconversations.php');
                         ?>
                     </ul>
                 </div>
-
+                <!-- messages in a conversation -->
                 <?php if ($businessId || $conversationId): ?>
                     <div class="right">
                         <div class="chat-container">
@@ -65,7 +66,13 @@ include('getconversations.php');
                         </div>
                     </div>
                 <?php else: ?>
-                    <div class="right"> </div>
+                    <div class="right">
+                        <div style="display: flex; justify-content: center; align-items: center; height: calc(100vh - 100px); background-color: #f9f9f9;">
+                            <div style="color: #808080; font-size: 1.2em; font-style: italic;">
+                                <span>No Conversations to show</span>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif; ?>
 
             </div>

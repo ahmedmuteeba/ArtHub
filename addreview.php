@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if the insertion was successful
             if ($insertStmt->affected_rows > 0) {
                 echo 'Review added successfully!';
-                header("Location: artwork.php");
+                header("Location: detail.php?artId=$artId");
             } else {
                 echo 'Error adding review.';
             }

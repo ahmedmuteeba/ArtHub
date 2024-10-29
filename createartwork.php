@@ -15,6 +15,14 @@
 </head>
 
 <body>
+
+  <?php
+  session_start();
+  if (!$_SESSION['profile'] == true) {
+    header("Location: createprofile.php");
+    exit;
+  } ?>
+
   <?php include('includes/header.php'); ?>
 
   <section id="center" class="center_o bg_gray pt-2 pb-2">
@@ -35,7 +43,7 @@
     </div>
   </section>
   <div class="upload-form" style="background-color: #fdf4f5;">
-    <form id="upload-form" enctype="multipart/form-data">
+    <form action="storeartwork.php" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="artName">Art Name:</label>
         <input type="text" name="artName" id="artname" required>
@@ -73,15 +81,15 @@
 
       <div class="form-group">
         <label for="artPicture2">Artwork Image: 2</label>
-        <input type="file" name="artPicture2" id="artworkimage" accept="image/*" required>
+        <input type="file" name="artPicture2" id="artworkimage" accept="image/*">
       </div>
 
       <div class="form-group">
         <label for="artPicture3">Artwork Image: 3</label>
-        <input type="file" name="artPicture3" id="artworkimage" accept="image/*" required>
+        <input type="file" name="artPicture3" id="artworkimage" accept="image/*">
       </div>
 
-      <button type="submit" id="upload-btn">Upload</button>
+      <button type="submit">Upload</button>
 
     </form>
   </div>

@@ -140,7 +140,9 @@ $contact = $rowbusiness['contact'];
 						<h6 class="font_14 mb-4 col_light"><i class="fa fa-envelope text-purple me-2"></i><?php echo $profileEmail ?></h6>
 
 						<a href='messages.php' id="open-chat-sidebar" class="chat-button" style="background-color: #533483; color: #d9bedc; padding: 10px 20px 10px ; border-radius: 12px; text-align: center; width: max-content; margin-bottom:10px;">
-							<i class="fa fa-comments" style="font-size:16px; text-decoration: none; font-weight: bold;"> View Conversations</i>
+							<i class="fa fa-comments" style="font-size:16px; text-decoration: none; font-weight: bold;">
+								View Conversations
+							</i>
 						</a>
 					</div>
 				</div>

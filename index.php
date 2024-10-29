@@ -107,8 +107,6 @@
 		</section>
 	</div>
 
-	</div>
-
 	<section id="port" class="p_4">
 		<div class="container-xl">
 			<div class="row port_1 text-center">
@@ -1681,6 +1679,7 @@
 			</div>
 		</div>
 	</section>
+
 	<section id="frame" class="p_4 pt-0">
 		<div class="container-fluid">
 			<div class="row port_1 text-center mb-4">
@@ -1975,6 +1974,7 @@
 	</section>
 
 	<?php include('includes/footer.php'); ?>
+
 	<script>
 		window.onscroll = function () { myFunction() };
 

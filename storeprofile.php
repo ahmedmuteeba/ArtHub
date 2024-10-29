@@ -44,13 +44,16 @@ $sql = "INSERT INTO profile (userId,businessName, profileBio, profileEmail,profi
     VALUES ('$userId','$businessName','$profileBio','$profileEmail','$profilePic')";
 
 if ($conn->query($sql1) === true) {
-  header("Location: profile.php");
+  if ($conn->query($sql) === true) {
+    $_SESSION['profile'] = true;
+    header("Location: profile.php");
+    exit;
+  } else {
+    header("Location: error.php?message=$conn->error");
+    exit;
+  }
 } else {
-  echo 'Error: ' . $sql . '<br>' . $conn->error;
-}
-if ($conn->query($sql) === true) {
-  header("Location: profile.php");
-} else {
-  echo 'Error: ' . $sql . '<br>' . $conn->error;
+  header("Location: error.php?message=$conn->error");
+  exit;
 }
 $conn->close();

@@ -97,18 +97,18 @@
 					<div class="footer_1i">
 						<hr class="line_1">
 						<h5 class="mb-3">RECENT NEWS</h5>
-						<p class="font_14 mb-2"><a href="detail.html">Digital art sensation breaks records a painting
+						<p class="font_14 mb-2"><a href="https://www.theartnewspaper.com/">Digital art sensation breaks records a painting
 								sells for millions in online auction.</a></p>
 						<h6 class="col_light font_14"><i class="fa fa-clock-o col_pink me-1"></i> May 18 <a
 								class="col_light" href="#"><i class="fa fa-comment-o col_pink me-1 ms-3"></i>23</a></h6>
 						<hr>
-						<p class="font_14 mb-2"><a href="detail1.html">Online sensation: Stunning painting goes viral,
+						<p class="font_14 mb-2"><a href="https://www.theartnewspaper.com/">Online sensation: Stunning painting goes viral,
 								captivating art enthusiasts worldwide.</a></p>
 						<h6 class="col_light font_14"><i class="fa fa-clock-o col_pink me-1"></i> July 19 <a
 								class="col_light" href="#"><i class="fa fa-comment-o col_pink me-1 ms-3"></i> 12</a>
 						</h6>
 						<hr>
-						<p class="font_14 mb-2"><a href="detail3.html">Online sensation: Stunning artwork goes viral,
+						<p class="font_14 mb-2"><a href="https://www.theartnewspaper.com/">Online sensation: Stunning artwork goes viral,
 								captivating global art enthusiasts.</a></p>
 						<h6 class="col_light font_14"><i class="fa fa-clock-o col_pink me-1"></i> June 17 <a
 								class="col_light" href="#"><i class="fa fa-comment-o col_pink me-1 ms-3"></i> 31</a>

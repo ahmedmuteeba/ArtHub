@@ -13,10 +13,11 @@ if (!$business_id && !$conversation_id) {
     exit;
 }
 
-// Fetch messages based on conversationId (prioritize this if available)
+// Fetch messages based on conversationId 
 if ($conversation_id) {
     // Fetch all messages in the conversation
-    $stmt = $conn->prepare("SELECT sender_id, message, created_at FROM messages WHERE conversation_id = ? ORDER BY created_at ASC");
+    $stmt = $conn->prepare("SELECT sender_id, message, created_at FROM messages 
+                            WHERE conversation_id = ? ORDER BY created_at ASC");
     $stmt->bind_param("i", $conversation_id);
     $stmt->execute();
     $messageResults = $stmt->get_result();
@@ -28,7 +29,6 @@ if ($conversation_id) {
             'text' => $row['message']
         ];
     }
-
     echo json_encode(['messages' => $messages]);
     $stmt->close();
 

@@ -1,0 +1,44 @@
+body {
+    font-family: 'Fraunces', serif;
+    background-color: #fdf4f5;
+    color: black;
+    text-align: center;
+    padding: 40px;
+}
+
+.error-container {
+    background-color: #e5c6f5;
+    border: 1px solid #533483;
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #533483;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #533483;
+    background-color: #fdf4f5;
+    padding: 10px 20px;
+    border: 2px solid #533483;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+a:hover {
+    background-color: #533483;
+    color: #fdf4f5;
+}

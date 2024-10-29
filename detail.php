@@ -247,7 +247,7 @@ if (isset($_GET['artId'])) {
     } else {
       echo 'No reviews found.';
     }
-    echo '
+    ?>
     <div class="container">
     <h3>Add Review</h3>
     <form method="POST" action="addreview.php">
@@ -285,9 +285,9 @@ if (isset($_GET['artId'])) {
     </form>
 </div>
 
-  ';
+  <?php
   } else {
-    echo 'Artwork not found.';
+    echo '<h1 style="margin:60px 600px;">Artwork not found.</h1>';
   }
 
   // Close the statement
