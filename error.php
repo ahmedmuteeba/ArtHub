@@ -17,13 +17,7 @@
         <h1>
             <?php echo isset($_GET['message']) ? htmlspecialchars($_GET['message']) : 'An unknown error occurred.'; ?>
         </h1>
-        <?php if ($_SESSION['userId']) { ?>
-            <a href="index.php">Go back to homepage</a>
-        <?php
-        } else { ?>
-            <a href="login.html">Go back to login</a>
-
-        <?php } ?>
+        <a href="#">Go Back</a>
     </div>
 </body>
 
